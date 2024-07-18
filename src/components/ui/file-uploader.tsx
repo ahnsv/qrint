@@ -56,4 +56,3 @@ const FileUploadDropzone = () => {
 };
 
 export default FileUploadDropzone;
-

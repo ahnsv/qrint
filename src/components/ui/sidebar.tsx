@@ -1,15 +1,15 @@
-import { cn } from "@/lib/utils"
-import { Link, PanelsTopLeft } from "lucide-react"
-import { Button } from "./button"
+import { cn } from "@/lib/utils";
+import { Link, PanelsTopLeft } from "lucide-react";
+import { Button } from "./button";
 
 const Sidebar = () => {
-    return (
-        <aside
-        className={cn(
-            "fixed top-0 left-0 z-20 h-screen -translate-x-full lg:translate-x-0 transition-[width] ease-in-out duration-300"
-          )}
-        >
-            <div className="relative h-full flex flex-col px-3 py-4 overflow-y-auto shadow-md dark:shadow-zinc-800">
+  return (
+    <aside
+      className={cn(
+        "fixed top-0 left-0 z-20 h-screen -translate-x-full lg:translate-x-0 transition-[width] ease-in-out duration-300",
+      )}
+    >
+      <div className="relative h-full flex flex-col px-3 py-4 overflow-y-auto shadow-md dark:shadow-zinc-800">
         <Button
           className={cn(
             "transition-transform ease-in-out duration-300 mb-1",
@@ -32,9 +32,9 @@ const Sidebar = () => {
             </h1>
           </Link>
         </Button>
-        </div>
-        </aside>
-    )
-}
+      </div>
+    </aside>
+  );
+};
 
-export default Sidebar
+export default Sidebar;
