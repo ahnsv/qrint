@@ -326,7 +326,7 @@ export const FileInput = forwardRef<
       ref={ref}
       {...props}
       className={`relative w-full ${isLOF ? "opacity-50 cursor-not-allowed " : "cursor-pointer "
-        }`}
+        } ${dropzoneState.isDragActive ? "border-green-500" : ""} ${dropzoneState.isFocused ? "border-accent" : "border-gray-300"}`}
     >
       <div
         className={cn(
