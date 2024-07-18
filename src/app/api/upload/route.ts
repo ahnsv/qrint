@@ -1,7 +1,7 @@
 "use server";
 
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/server";
 
 export async function POST(req: NextRequest, res: NextResponse) {
   const supabase = createClient();
@@ -19,10 +19,9 @@ export async function POST(req: NextRequest, res: NextResponse) {
           upsert: true,
         });
       if (error) {
-        console.error(error);
         throw error;
       }
-      paths.push(data.fullPath);
+      paths.push(data.path);
     }
 
     return NextResponse.json({
