@@ -1,3 +1,5 @@
+import "./style.css";
+
 export default async function PrintPageLayout({
   children,
 }: Readonly<{
