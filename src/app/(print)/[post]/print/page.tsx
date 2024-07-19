@@ -1,6 +1,4 @@
-"use client";
-
-export default function PrintPage({
+export default async function PrintPage({
   params: { post },
 }: {
   params: {
