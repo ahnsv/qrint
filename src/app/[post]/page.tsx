@@ -10,6 +10,7 @@ import {
 import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import PrintButton from "@/components/ui/print-button";
 
 export default async function Post({
   params: { post },
@@ -39,7 +40,7 @@ export default async function Post({
 
   return (
     <div>
-      <Card>
+      <Card className="flex flex-col space-y-2">
         <CardHeader>
           <CardTitle>{slug}</CardTitle>
           <CardDescription className="grid grid-cols-6">
@@ -72,6 +73,9 @@ export default async function Post({
             </div>
           ))}
         </CardContent>
+        <CardFooter className="flex justify-end">
+          <PrintButton assets={publicURLs} />
+        </CardFooter>
       </Card>
     </div>
   );

@@ -2,6 +2,7 @@
 
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "./button";
+import Link from "next/link";
 
 type MenuProps = {
   menuItems: [
@@ -30,7 +31,9 @@ const Menu: React.FC<MenuProps> = ({ menuItems }) => {
         })}
       </ul>
       <div className="new-entry mt-auto">
-        <Button className="w-full">New Entry</Button>
+        <Link href="/new">
+          <Button className="w-full">New Entry</Button>
+        </Link>
       </div>
     </nav>
   );
