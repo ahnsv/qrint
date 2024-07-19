@@ -49,16 +49,17 @@ export default async function Post({
                 <Image
                   src={decodeURIComponent(url)}
                   alt="Image"
-                  className="rounded-md object-cover"
-                  layout="fill"
-                  objectFit="contain"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  style={{ width: "100%", height: "auto" }} // optionall
                 />
               </AspectRatio>
             </div>
           ))}
         </CardContent>
         <CardFooter className="flex justify-end">
-          <PrintButton assets={publicURLs} />
+          <PrintButton />
         </CardFooter>
       </Card>
     </div>

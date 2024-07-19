@@ -8,38 +8,28 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-type PrintButtonProps = {
-  assets: string[];
-};
-const PrintButton: React.FC<PrintButtonProps> = ({ assets }) => {
-  const handlePrint = () => {
-    const printWindow = window.open("", "_blank");
-    if (printWindow) {
-      printWindow.document.write(`
-                <html>
-                    <head>
-                        <title>Print All</title>
-                    </head>
-                    <body>
-                        ${assets.map((asset) => `<img src="${asset}" />`).join("")}
-                    </body>
-                </html>
-            `);
-      printWindow.document.close();
-      printWindow.print();
-    }
-  };
+type PrintButtonProps = {};
+const PrintButton: React.FC<PrintButtonProps> = () => {
+  const pathname = usePathname();
 
   return (
-    <TooltipProvider>
+    <TooltipProvider delayDuration={100}>
       <Tooltip>
         <TooltipTrigger>
-          <Button variant={`ghost`} onClick={handlePrint}>
-            <Printer size={24} />
-          </Button>
+          <Link
+            href={`${pathname}/print`}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <Button variant={`ghost`}>
+              <Printer size={24} />
+            </Button>
+          </Link>
         </TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent className="bg-primary text-secondary">
           <p>Print All</p>
         </TooltipContent>
       </Tooltip>
