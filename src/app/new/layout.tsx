@@ -1,12 +1,17 @@
 import Sidebar from "@/components/ui/sidebar";
 import { createClient } from "@/lib/supabase/server";
 
-export default async function Index() {
+export default async function NewLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   const supabase = createClient();
   const { data, error } = await supabase.from("posts").select("slug, id");
   if (error) {
     console.error(error);
   }
+
   return (
     <div className="flex w-screen h-screen">
       <Sidebar
@@ -17,9 +22,7 @@ export default async function Index() {
           label: post.slug,
         }))}
       />
-      <main className="px-8 py-4 w-5/6 h-full">
-        <h1>Index</h1>
-      </main>
+      <main className="px-8 py-4 w-5/6 h-full">{children}</main>
       <footer></footer>
     </div>
   );

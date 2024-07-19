@@ -1,0 +1,10 @@
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-page,
+  .print-page > * {
+    visibility: visible;
+    page-break-after: always;
+  }
+}

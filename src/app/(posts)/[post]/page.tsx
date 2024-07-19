@@ -7,8 +7,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { createClient } from "@/lib/supabase/server";
-import { notFound } from "next/navigation";
+import PrintButton from "@/components/ui/print-button";
+import { getPost } from "@/lib/supabase/api/posts";
+import { getPublicURLs } from "@/lib/supabase/storage";
 import Image from "next/image";
 
 export default async function Post({
@@ -16,30 +17,14 @@ export default async function Post({
 }: {
   params: { post: string };
 }) {
-  const supabase = createClient();
-  const { data, error } = await supabase
-    .from("posts")
-    .select("*, users(email, id)")
-    .eq("slug", decodeURIComponent(post))
-    .single();
+  const { slug, file_urls, user_id, updated_at, created_at, users } =
+    await getPost(post);
 
-  if (error) {
-    console.error(error);
-    return notFound();
-  }
-
-  const { slug, file_urls, user_id, updated_at, created_at, users } = data;
-
-  const publicURLs = (file_urls as string[])?.map(
-    (url) =>
-      supabase.storage
-        .from(process.env.SUPABASE_BUCKET_ID! as string)
-        .getPublicUrl(url).data.publicUrl,
-  );
+  const publicURLs = await getPublicURLs(file_urls as string[]);
 
   return (
     <div>
-      <Card>
+      <Card className="flex flex-col space-y-2">
         <CardHeader>
           <CardTitle>{slug}</CardTitle>
           <CardDescription className="grid grid-cols-6">
@@ -64,14 +49,18 @@ export default async function Post({
                 <Image
                   src={decodeURIComponent(url)}
                   alt="Image"
-                  className="rounded-md object-cover"
-                  layout="fill"
-                  objectFit="contain"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  style={{ width: "100%", height: "auto" }} // optionall
                 />
               </AspectRatio>
             </div>
           ))}
         </CardContent>
+        <CardFooter className="flex justify-end">
+          <PrintButton />
+        </CardFooter>
       </Card>
     </div>
   );
