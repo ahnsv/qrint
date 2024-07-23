@@ -1,3 +1,4 @@
+import IndexMain from "@/components/index/main";
 import Sidebar from "@/components/ui/sidebar";
 import { createClient } from "@/lib/supabase/server";
 
@@ -17,7 +18,7 @@ export default async function Index() {
         }))}
       />
       <main className="px-8 py-4 w-5/6 h-full">
-        <h1>Index</h1>
+        <IndexMain />
       </main>
       <footer></footer>
     </div>
