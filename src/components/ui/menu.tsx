@@ -3,6 +3,7 @@
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "./button";
 import Link from "next/link";
+import DeletePostButton from "./delete-post-button";
 
 type MenuProps = {
   menuItems: [
@@ -17,8 +18,11 @@ type MenuProps = {
 };
 const Menu: React.FC<MenuProps> = ({ menuItems }) => {
   return (
-    <nav className="flex flex-col h-full">
-      <ul className="flex flex-col space-y-1">
+    <nav className="flex flex-col h-full my-2">
+      <p className="text-sm font-bold text-slate-500 tracking-tighter">
+        Entries
+      </p>
+      <ul className="flex flex-col mt-2 space-y-1">
         {menuItems?.map((menu) => {
           return (
             <li
@@ -28,6 +32,7 @@ const Menu: React.FC<MenuProps> = ({ menuItems }) => {
               <a href={`/${menu.slug}`} className="w-full">
                 {menu.slug}
               </a>
+              <DeletePostButton slug={menu.slug} />
             </li>
           );
         })}

@@ -29,3 +29,22 @@ export async function createPost(
     error,
   };
 }
+
+export async function deletePost(slug: string) {
+  const supabase = createClient();
+
+  const { data, error } = await supabase
+    .from("posts")
+    .delete()
+    .eq("slug", slug);
+
+  if (error) {
+    console.error("error", error);
+    throw error;
+  }
+
+  return {
+    data,
+    error,
+  };
+}
