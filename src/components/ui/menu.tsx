@@ -23,9 +23,11 @@ const Menu: React.FC<MenuProps> = ({ menuItems }) => {
           return (
             <li
               key={menu.slug}
-              className="text-sm p-4 px-2 cursor-pointer hover:bg-slate-100 transition-colors duration-100 ease-linear"
+              className="text-sm h-12 w-full rounded-xl pl-2 cursor-pointer hover:bg-slate-100 transition-colors duration-100 ease-linear flex items-center"
             >
-              <a href={`/${menu.slug}`}>{menu.slug}</a>
+              <a href={`/${menu.slug}`} className="w-full">
+                {menu.slug}
+              </a>
             </li>
           );
         })}
