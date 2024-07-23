@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "./button";
 import Link from "next/link";
 import DeletePostButton from "./delete-post-button";
+import { cn } from "@/lib/utils";
 
 type MenuProps = {
   menuItems: [
@@ -27,7 +28,10 @@ const Menu: React.FC<MenuProps> = ({ menuItems }) => {
           return (
             <li
               key={menu.slug}
-              className="text-sm h-12 w-full rounded-xl pl-2 cursor-pointer hover:bg-slate-100 transition-colors duration-100 ease-linear flex items-center"
+              className={cn(
+                "text-sm h-12 w-full rounded-xl pl-2 cursor-pointer hover:bg-slate-100 transition-colors duration-100 ease-linear flex items-center",
+                menu.activated ? "bg-slate-100" : "",
+              )}
             >
               <a href={`/${menu.slug}`} className="w-full">
                 {menu.slug}

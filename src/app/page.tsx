@@ -13,7 +13,6 @@ export default async function Index() {
         contents={data?.map((post) => ({
           slug: post.slug,
           href: `/${post.slug}`,
-          activated: true,
           label: post.slug,
         }))}
       />

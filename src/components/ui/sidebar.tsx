@@ -5,12 +5,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./button";
 import Menu from "./menu";
+import { usePathname } from "next/navigation";
 
 type SidebarProps = {
   isOpen?: boolean;
   contents: any; // TODO: fix this
 };
 const Sidebar: React.FC<SidebarProps> = ({ contents, isOpen }) => {
+  const pathname = usePathname();
+  const contentsWithActivation = contents.map((content: any) => {
+    return {
+      ...content,
+      activated: decodeURI(pathname).includes(content.slug),
+    };
+  });
   return (
     <aside
       className={cn(
@@ -42,7 +50,7 @@ const Sidebar: React.FC<SidebarProps> = ({ contents, isOpen }) => {
             </h1>
           </Link>
         </Button>
-        <Menu menuItems={contents} />
+        <Menu menuItems={contentsWithActivation} />
       </div>
     </aside>
   );
