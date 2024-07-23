@@ -1,4 +1,8 @@
+"use client";
+
+import { deletePost } from "@/app/api/posts/actions";
 import { Trash2Icon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,11 +15,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./alert-dialog";
-import { deletePost } from "@/app/api/posts/actions";
 const DeletePostButton: React.FC<{ slug: string }> = ({ slug }) => {
+  const router = useRouter();
   const handleDelete = async () => {
     await deletePost(slug);
     // TODO: revalidate the cache
+    router.push("/");
+    router.refresh();
   };
   return (
     <AlertDialog>
