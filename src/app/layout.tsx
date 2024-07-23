@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "sonner";
 
 const notoSansKR = Noto_Sans_KR({
   subsets: ["latin"],
@@ -39,6 +40,7 @@ export default async function RootLayout({
         )}
       >
         {children}
+        <Toaster richColors position="bottom-center" />
       </body>
     </html>
   );
