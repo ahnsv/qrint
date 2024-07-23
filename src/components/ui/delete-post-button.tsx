@@ -20,7 +20,10 @@ const DeletePostButton: React.FC<{ slug: string }> = ({ slug }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        <Trash2Icon size={16} className="mx-2" />
+        <Trash2Icon
+          size={24}
+          className="mx-2 p-1 rounded-sm hover:text-red-300 hover:bg-red-100 transition-colors duration-100 ease-linear"
+        />
       </AlertDialogTrigger>
       <AlertDialogPortal>
         <AlertDialogContent>
