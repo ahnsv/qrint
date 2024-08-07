@@ -84,7 +84,7 @@ const UploadForm = () => {
           type="file"
           name="files"
           id="files"
-          accept="image/*"
+          accept="image/*, application/pdf"
           multiple
           onChange={handleInputChange}
         />
